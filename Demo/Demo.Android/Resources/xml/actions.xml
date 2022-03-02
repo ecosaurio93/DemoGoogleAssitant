@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<actions>
+  <action intentName="actions.intent.OPEN_APP_FEATURE">
+    <fulfillment urlTemplate="https://demo-actions.com/create{?exerciseType}">
+      <parameter-mapping urlParameter="dropoffLocationName" intentParameter="taxiReservation.dropoffLocation.name" />
+    </fulfillment>
+  </action>
+  <!--<action intentName="actions.intent.CANCEL_TAXI_RESERVATION">
+    <fulfillment urlTemplate="https://actions.gorilla.com/cancel" />
+  </action>-->
+</actions>

@@ -4,6 +4,7 @@ using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
+using Android.Content;
 
 namespace Demo.Droid
 {
@@ -23,6 +24,22 @@ namespace Demo.Droid
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        
+
+
+        private void handleDeepLink(Uri? data)
+        {
+            switch (data?.AbsolutePath)
+            {
+                case "/create":
+                    System.Diagnostics.Debug.WriteLine("Create item");
+                    break;
+                case "/delete":
+                    System.Diagnostics.Debug.WriteLine("Delete item");
+                    break;
+            }
         }
     }
 }

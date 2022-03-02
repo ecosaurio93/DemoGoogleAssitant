@@ -1,6 +1,59 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.demo" android:installLocation="auto">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:versionCode="1" android:versionName="1.0" package="com.demo" android:installLocation="auto">
 	<uses-sdk android:minSdkVersion="21" android:targetSdkVersion="29" />
-	<application android:label="Demo.Android" android:theme="@style/MainTheme"></application>
+	<application 
+			android:label="Demo.Android"
+			android:theme="@style/MainTheme"
+			android:supportsRtl="true"
+			tools:ignore="GoogleAppIndexingWarning">
+    <activity
+          android:name="com.demo.MainActivity"
+          android:exported="true"
+          android:label="DemoAssitent"
+          android:launchMode="singleTask"
+          android:theme="@style/AppTheme.NoActionBar">
+
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+
+      <intent-filter>
+        <category android:name="android.intent.category.DEFAULT" />
+      </intent-filter>
+
+      <!-- Define your supported deeplinks -->
+      <intent-filter
+          android:autoVerify="true"
+          tools:targetApi="m">
+        <action android:name="android.intent.action.VIEW" />
+
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
+
+        <data
+            android:host="demo-actions.com"
+            android:scheme="https" />
+      </intent-filter>
+    </activity>
+    <service
+            android:name="Demo.Droid.Tracking.FitTrackingService"
+            android:enabled="true"
+            android:exported="true" />
+    <provider
+      android:name="com.demo.droid.Slices.FitSliceProvider"
+      android:authorities="com.demo.droid.Slices.provider"
+      android:exported="true">
+
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+
+        <category android:name="android.app.slice.category.SLICE" />
+      </intent-filter>
+
+    </provider>
+		</application>
 	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 </manifest>
